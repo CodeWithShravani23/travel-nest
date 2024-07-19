@@ -7,11 +7,16 @@ const methodOverride=require("method-override");
 const ejsMate=require("ejs-mate");
 
 app.set("view engine","ejs");
-app.set("views",path.join(__dirname,"views"));
+app.set("views", path.join(__dirname,"views"));
 app.use(express.urlencoded({extended:true}));
 app.use(methodOverride("_method"));
 app.engine("ejs",ejsMate);
-app.use(express.static(path.join(__dirname,"/public")));
+// app.use(express.static(path.join(__dirname,"/public")));
+
+// Serve static files from the public directory
+app.use(express.static(path.join(__dirname, '/public')));
+
+// Route to render the boilerplate.ejs with a sample body content
 
 app.listen(8080,()=>{
     console.log("listening to the port 8080");

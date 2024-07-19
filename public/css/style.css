@@ -1,3 +1,40 @@
-body{
-    background-color: blueviolet;
+.navbar{
+    height: 5rem;
+    background-color: white;
 }
+.fa-mountain-sun{
+    color:#2a4d2a;
+    /* color:rgb(225, 23, 56); */
+    font-size: 2rem;
+    margin-left: 1rem;
+
+}
+.nav-link{
+    color: #222222 !important;
+    font-weight: 400 !important;
+    font-size: 1.2rem !important;
+    opacity: 0.8;
+ 
+}
+.nav-link:hover{
+    opacity: 1;
+}
+.brand{
+    font-family: "Spinnaker", sans-serif;
+    font-weight: 400;
+    font-size: 1.9rem;
+    margin-right: 1rem;
+    margin-left: 0.7rem;
+    color:rgb(33, 3, 3);
+
+}
+#grey{
+    font-weight: 300;
+    font-size: 1.6rem;
+    color:rgb(67, 65, 65);
+    background-color: white;
+}
+    
+    /* color: -webkit-linear-gradient(to right bottom, #000801, #5bab67);
+    color: linear-gradient(to right bottom, #000801, #5bab67);
+font-size: 2rem;
