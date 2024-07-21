@@ -1,7 +1,7 @@
 const express= require("express");
 const app= express();
 const mongoose=require("mongoose");
-const listing=require("./models/list.js");
+const Listing=require("./models/list.js");
 const path= require("path");
 const methodOverride=require("method-override");
 const ejsMate=require("ejs-mate");
@@ -29,7 +29,7 @@ app.get("/",(req,res)=>{
 
 /////index route////
 app.get("/listings",async(req,res)=>{
-  const allListings= await listing.find({});
+  const allListings= await Listing.find({});
   console.log("data fetched");
   res.render("./listings/index.ejs",{allListings});
   
@@ -42,14 +42,14 @@ app.get("/listings/new",(req,res)=>{
 //id route//
 app.get("/listings/:id",async(req,res)=>{
   const {id} = req.params;
-  const list= await listing.findById(id);
+  const list= await Listing.findById(id);
   res.render("listings/show.ejs",{list});
 });
 
 //create route
 app.post("/listings" ,async (req,res)=>{
-let newlisting=req.body.listing;
-const newlist=new listing(newlisting);
+let newlisting=req.body.Listing;
+const newlist=new Listing(newlisting);
 await newlist.save();
 console.log(newlisting);
 res.redirect("/listings");
@@ -58,7 +58,7 @@ res.redirect("/listings");
 //edit route
 app.get("/listings/:id/edit",async(req,res)=>{
   const {id} = req.params;
-  const list= await listing.findById(id);
+  const list= await Listing.findById(id);
   res.render("listings/edit.ejs",{list});
 
 });
@@ -66,7 +66,7 @@ app.get("/listings/:id/edit",async(req,res)=>{
 ///update route
 app.put("/listings/:id",async(req,res)=>{
   const {id} = req.params;
-  await listing.findByIdAndUpdate(id,{ ...req.body.listing});
+  await Listing.findByIdAndUpdate(id,{ ...req.body.Listing});
   res.redirect(`/listings/${id}`);
 
 });
@@ -74,7 +74,7 @@ app.put("/listings/:id",async(req,res)=>{
 ///delete route
 app.delete("/listings/:id", async (req,res)=>{
   const { id } = req.params;
-  let deletedListing= await listing.findByIdAndDelete(id);
+  let deletedListing= await Listing.findByIdAndDelete(id);
   console.log(deletedListing);
   res.redirect("/listings");
 
