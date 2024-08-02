@@ -113,9 +113,10 @@ body{
     opacity: 1;
     font-size: 1.21rem;
     }
-    .card{
+    .listing-card{
         border: none !important;
         margin-bottom: 2rem !important;
+        color: black !important;
     }
     .card-img-top{border-radius: 1rem !important;
         width: 100% !important;
@@ -155,3 +156,10 @@ body{
         width: 5rem !important;
 
     }
+    .checked {
+        color: orange;
+      }
+      .body-review{
+        padding: 1rem;
+        margin: 1rem;
+      }

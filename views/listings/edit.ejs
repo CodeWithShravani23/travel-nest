@@ -5,36 +5,42 @@
 <body>
     <h2>Edit your listing</h2>
     <br>
-    <form method="POST" action="/listings/<%= list._id %>?_method=PUT">
+    <form method="POST" action="/listings/<%= list._id %>?_method=PUT" novalidate class="needs-validation">
        
        <div class="mb-3"><lable for="title" class="form-lable">Title</lable>
-        <input name="listing[title]" value="<%= list.title %>" type="text" class="form-control">
+        <input name="listing[title]" value="<%= list.title %>" type="text" class="form-control" required>
+        <div class="invalid-feedback">Title should be valid</div>
         </div> 
         <div class="mb-3">
             <lable for="description" class="form-lable">Description</lable>
-            <textarea name="listing[description]"  class="form-control"><%= list.description %></textarea>
+            <textarea name="listing[description]"  class="form-control" required><%= list.description %></textarea>
+            <div class="invalid-feedback">Text should be valid</div>
         </div>
     
     <div class="mb-3">
         <lable for="image" class="form-lable">Image</lable>
-        <input name="listing[image]" value="<%= list.image %>" type="text" class="form-control">
+        <input name="listing[image]" value="<%= list.image %>" type="text" class="form-control" required>
+        <div class="invalid-feedback">image link should be valid</div>
     </div>
     <div class="row">
         <div class="mb-3 col-4">
             <lable for="price" class="form-lable">Price</lable>
-                <input name="listing[price]" value="<%= list.price %>" type="number"  class="form-control">
+                <input name="listing[price]" value="<%= list.price %>" type="number"  class="form-control" required>
+                <div class="invalid-feedback">Price should be valid</div>
         </div>
         
         <div class="mb-3 col-8">
             <lable for="country" class="form-lable">Country</lable>
-            <input name="listing[country]" value="<%= list.country %>" type="text"  class="form-control">
+            <input name="listing[country]" value="<%= list.country %>" type="text"  class="form-control" required>
+            <div class="invalid-feedback"> Country should be valid</div>
         </div>
     </div>
     
     
     <div class="mb-3">
         <lable for="location" class="form-lable">Location</lable>
-        <input name="listing[location]" value="<%= list.location %>" type="text"  class="form-control">
+        <input name="listing[location]" value="<%= list.location %>" type="text"  class="form-control" required>
+        <div class="invalid-feedback">Location should be valid</div>
     </div>
 
 

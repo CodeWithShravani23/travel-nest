@@ -1,31 +1,81 @@
 <% layout("/layouts/boilerplate") %>
-<div class="row mt-3" >
-    <div class="col-8 offset-3">
-<body>
-   
-    <h3>Listing details</h3>
-</div>
-    <div class="card col-6 offset-3 show-card mt-2">
-        <img src="<%= list.image %>" class="card-img-top show-img" alt="listing-image">
-  <div class="card-body">
-    <p class="card-text"><b><%= list.title %></b><br>
-        <%= list.description %><br>
-        &#8377;<%= list.price.toLocaleString("en-IN") %><br>
-        <%= list.location %><br>
-        <%= list.country %><br>
+    <div class="row mt-3">
+        <div class="col-8 offset-3">
 
-    </p>
-  </div>
-    </div>
+            <body>
+
+                <h3><%= list.title %></h3>
+        </div>
+        <div class="listing-card col-6 offset-3 show-card mt-2">
+            <img src="<%= list.image %>" class="card-img-top show-img" alt="listing-image">
+            <div class="card-body">
+                <p class="card-text"><b>
+                        <%= list.title %>
+                    </b><br>
+                    <%= list.description %><br>
+                        &#8377;<%= list.price.toLocaleString("en-IN") %><br>
+                            <%= list.location %><br>
+                                <%= list.country %><br>
+
+                </p>
+            </div>
+        </div>
+        <br>
+        <div class="btns">
+            <a href="/listings/<%= list._id %>/edit" class="btn btn-dark col-1 offset-3 edit-btn">Edit </a>
+            <br><br>
+            <form method="POST" action="/listings/<%= list._id %>?_method=DELETE">
+                <button class="btn btn-dark offset-5">Delete</button>
+            </form>
+        </div>
+        <div class="col-8 offset-3 mb-3">
+            <hr>
+            <br>
+            <h3>Leave a review</h3>
+            <form method="POST" action="/listings/<%= list._id %>/reviews" novalidate class="needs-validation">
+                <div class="mb-3 mt-3">
+                    <label for="rating" class="form-lable mb-1">Rating</label>
+
+                    <span class="fa fa-star"></span>
+                    <br>
+                    <span>1 <span class="fa fa-star checked"></span> &nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2 <span class="fa fa-star checked"></span>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3 <span class="fa fa-star checked"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4 <span class="fa fa-star checked"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5 <span class="fa fa-star checked"></span><br>
+                    <input type="range" min="1" max="5" id="rating" name="review[rating]" class="form-range">
+                </div>
+                <div class="mb-3 mt-3">
+                    <label for="comment" class="form-lable">Comment</label>
+                    <textarea name="review[comment]" id="comment" rows="5" cols="15" class="form-control" required></textarea>
+                    <div class="invalid-feedback">Please Enter comment for review</div>
+                </div>
+                <button class="btn btn-outline-dark">Submit</button>
+            </form>
+    <hr>
     <br>
-    <div class="btns">
-        <a href="/listings/<%= list._id %>/edit" class="btn btn-dark col-1 offset-3 edit-btn">Edit </a>
-        <br><br>
-        <form method="POST" action="/listings/<%= list._id %>?_method=DELETE" >
-            <button class="btn btn-dark offset-5">Delete</button>
-        </form>
+    <h4>All Reviews</h4>
+    <div class="row">
+        
+            <% for(review of list.review){ %>
+          <div class="card col-5 mb-1 ms-3 mt-3">
+            <div class="card-body body-review">
+                <h5 class="card-title"><i class="fa-regular fa-user"></i>&nbsp;User</h5>
+                <p class="card-text"><%= review.comment %></p>
+                <p class="card-text"><%= review.rating %><span class="fa fa-star checked"></span></p>
+                </div>
+                <form  method="POST" action="/listings/<%= list._id %>/reviews/<%= review._id %>?_method=DELETE">
+                    <button class="btn btn-sm btn-dark mb-3">Delete</button>
+                </form>
+          </div>
+           <% } %>
+        
     </div>
-    
+   
 
-</body>
-</div>
+   
+        </div>
+        </body>
+    </div>
